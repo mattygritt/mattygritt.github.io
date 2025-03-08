@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find out if you're classified as Independent or Dependent for financial aid purposes. Ideal for FAFSA and student loan guidance.">
+    <meta name="keywords" content="FAFSA, student loans, financial aid, dependency status, independent student, dependent student, college funding, scholarships, refinance student loans">
+    <meta name="author" content="amidependent.com">
+    <title>amidependent.com</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            background-color: #dcdcdc; /* Lighter gray background */
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+        .banner {
+            font-size: 2em;
+            font-weight: bold;
+            padding: 10px;
+            color: black;
+        }
+        .banner span {
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: green; /* Ensures it starts as green */
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+        select, input {
+            padding: 10px;
+            font-size: 1em;
+        }
+        select {
+            width: auto;
+            min-width: 150px;
+        }
+        input[type="date"] {
+            width: auto;
+            min-width: 130px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        #result { margin-top: 15px; font-size: 1.2em; font-weight: bold; }
+        #reason { margin-top: 10px; font-size: 1em; color: #555; }
+        #error { margin-top: 10px; font-size: 1em; color: red; }
+        .ad-container {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .hidden-keywords { display: none; }
+        .independent { color: green; }
+        .dependent { color: red; }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">am<span id="color-changing-i">I</span>dependent.com</div>
+        <h2>Dependency Status Checker</h2>
+        <div class="input-container">
+            <div>
+                <label for="awardYear">Select Award Year:</label>
+                <select id="awardYear">
+                    <option value="2024">2024-2025</option>
+                    <option value="2025">2025-2026</option>
+                    <option value="2026">2026-2027</option>
+                    <option value="2027">2027-2028</option>
+                    <option value="2028">2028-2029</option>
+                    <option value="2029">2029-2030</option>
+                    <option value="2030">2030-2031</option>
+                    <option value="2031">2031-2032</option>
+                    <option value="2032">2032-2033</option>
+                    <option value="2033">2033-2034</option>
+                    <option value="2034">2034-2035</option>
+                    <option value="2035">2035-2036</option>
+                    <option value="2036">2036-2037</option>
+                    <option value="2037">2037-2038</option>
+                    <option value="2038">2038-2039</option>
+                    <option value="2039">2039-2040</option>
+                    <option value="2040">2040-2041</option>
+                    <option value="2041">2041-2042</option>
+                    <option value="2042">2042-2043</option>
+                    <option value="2043">2043-2044</option>
+                    <option value="2044">2044-2045</option>
+                </select>
+            </div>
+            <div>
+                <label for="dob">Enter Date of Birth:</label>
+                <input type="date" id="dob">
+            </div>
+        </div>
+        <button onclick="checkIndependence()">Check Status</button>
+        <p id="error"></p>
+        <p id="result"></p>
+        <p id="reason"></p>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="YOUR-AD-CLIENT-ID"
+                data-ad-slot="YOUR-AD-SLOT-ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <script>
+        function checkIndependence() {
+            let awardYear = parseInt(document.getElementById("awardYear").value);
+            let dobInput = document.getElementById("dob").value;
+            let errorElement = document.getElementById("error");
+            let resultElement = document.getElementById("result");
+            let reasonElement = document.getElementById("reason");
+            
+            if (!dobInput) {
+                errorElement.innerText = "Please enter a Valid Date of Birth";
+                resultElement.innerText = "";
+                reasonElement.innerText = "";
+                return;
+            }
+            
+            errorElement.innerText = "";
+            let dob = new Date(dobInput);
+            let cutoffYear = awardYear - 23;
+            let cutoffDate = new Date(cutoffYear, 0, 1);
+            
+            if (dob < cutoffDate) {
+                resultElement.innerText = "Independent";
+                reasonElement.innerText = "You are considered independent because your date of birth is before January 1, " + cutoffYear + ".";
+                resultElement.className = "independent";
+            } else {
+                resultElement.innerText = "Dependent";
+                reasonElement.innerText = "You are considered dependent solely based upon your Date of Birth, as you were not born before January 1, " + cutoffYear + ".";
+                resultElement.className = "dependent";
+            }
+        }
+        setInterval(() => {
+            let iElement = document.getElementById("color-changing-i");
+            iElement.style.color = (iElement.style.color === "green") ? "red" : "green";
+        }, 3000);
+    </script>
+</body>
+</html>

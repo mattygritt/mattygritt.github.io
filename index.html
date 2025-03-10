@@ -12,7 +12,7 @@
             font-family: Arial, sans-serif; 
             text-align: center; 
             margin: 0; 
-            background-color: #dcdcdc; /* Lighter gray background */
+            background-color: #dcdcdc; 
             color: black;
             display: flex;
             flex-direction: column;
@@ -35,7 +35,7 @@
             font-family: "Courier New", monospace;
             font-weight: bold;
             text-transform: uppercase;
-            color: green; /* Ensures it starts as green */
+            color: green;
         }
         .input-container {
             display: flex;
@@ -62,7 +62,7 @@
             font-size: 1em;
         }
         #result { margin-top: 15px; font-size: 1.2em; font-weight: bold; }
-        #reason { margin-top: 10px; font-size: 1em; color: #555; }
+        #reason { margin-top: 10px; font-size: 1em; color: #555; white-space: pre-line; }
         #error { margin-top: 10px; font-size: 1em; color: red; }
         .ad-container {
             margin-top: 20px;
@@ -73,7 +73,8 @@
         .independent { color: green; }
         .dependent { color: red; }
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6686447612194915"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -146,16 +147,17 @@
             
             errorElement.innerText = "";
             let dob = new Date(dobInput);
-            let cutoffYear = awardYear - 23;
+            let cutoffYear = awardYear - 24;
             let cutoffDate = new Date(cutoffYear, 0, 1);
             
             if (dob < cutoffDate) {
                 resultElement.innerText = "Independent";
-                reasonElement.innerText = "You are considered independent because your date of birth is before January 1, " + cutoffYear + ".";
+                reasonElement.innerHTML = "You are considered independent because your date of birth is before January 1, " + cutoffYear + ".";
                 resultElement.className = "independent";
             } else {
+                let nextIndependentYear = dob.getFullYear() + 24;
                 resultElement.innerText = "Dependent";
-                reasonElement.innerText = "You are considered dependent solely based upon your Date of Birth, as you were not born before January 1, " + cutoffYear + ".";
+                reasonElement.innerHTML = "You are considered dependent solely based upon your Date of Birth.<br><br>You will qualify as independent in the " + nextIndependentYear + "-" + (nextIndependentYear + 1) + " award year.";
                 resultElement.className = "dependent";
             }
         }

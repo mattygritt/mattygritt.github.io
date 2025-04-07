@@ -154,8 +154,8 @@
             
             errorElement.innerText = "";
             let dob = new Date(dobInput);
-            let cutoffYear = awardYear - 24;
-            let cutoffDate = new Date(cutoffYear, 0, 1);
+            let cutoffYear = awardYear + 1 - 24; // Calculate 24 years before the second year in the award year
+            let cutoffDate = new Date(cutoffYear, 0, 1); // January 1 of that calculated year
             
             if (dob < cutoffDate) {
                 resultElement.innerText = "Independent";

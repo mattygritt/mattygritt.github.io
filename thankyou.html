@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>amidependent.com – Thank You</title>
+<style>
+  body{font-family:Arial,sans-serif;background:#dcdcdc;color:#000;margin:0;
+       padding-top:70px;display:flex;flex-direction:column;align-items:center;min-height:100vh;}
+  a{color:inherit;text-decoration:none}
+  /* NAVBAR (same as other pages) */
+  .navbar{position:fixed;top:0;left:0;right:0;height:60px;background:#fff;
+          box-shadow:0 2px 4px rgba(0,0,0,.1);display:flex;justify-content:space-between;
+          align-items:center;padding:0 16px;z-index:1000;}
+  .navbar-logo{font-weight:700;font-size:1.25rem;}
+  .navbar-logo span{font-family:"Courier New",monospace;color:green;text-transform:uppercase}
+  #nav-links{display:none;gap:24px;} #nav-links a{font-weight:500;}
+  .hamburger{width:28px;height:22px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;}
+  .hamburger span{height:4px;background:#000;border-radius:2px;}
+  /* SIDE DRAWER */
+  .side-drawer{position:fixed;top:0;right:0;height:100%;width:250px;background:#fff;
+               box-shadow:-2px 0 5px rgba(0,0,0,.2);transform:translateX(100%);
+               transition:transform .3s ease;display:flex;flex-direction:column;padding:80px 20px;z-index:999;}
+  .side-drawer.show{transform:translateX(0);}
+  .side-drawer a{font-size:1.1rem;margin-bottom:16px;}
+  .overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.3);
+           display:none;z-index:998;} .overlay.show{display:block;}
+  /* CONTENT */
+  .container{width:100%;max-width:600px;text-align:center;padding:20px;}
+  h1{margin-bottom:12px;} p{line-height:1.5;margin-bottom:20px;}
+  @media(min-width:768px){.hamburger{display:none} #nav-links{display:flex}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-logo">am<span id="color-changing-i-nav">I</span>dependent</div>
+  <div id="hamburger" class="hamburger" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </div>
+  <div id="nav-links">
+    <a href="index.html">Home</a>
+    <a href="ways.html">Ways to Be Independent</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</nav>
+
+<aside id="side-drawer" class="side-drawer" aria-hidden="true">
+  <a href="index.html">Home</a>
+  <a href="ways.html">Ways to Be Independent</a>
+  <a href="about.html">About Us</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html">Privacy Policy</a>
+</aside>
+<div id="overlay" class="overlay"></div>
+
+<div class="container">
+  <h1>Thank You!</h1>
+  <p>Your message has been sent. We’ll get back to you as soon as possible.</p>
+  <p><a href="index.html">Return to Home</a></p>
+</div>
+
+<script>
+  /* Drawer logic */
+  const hamburger=document.getElementById('hamburger');
+  const sideDrawer=document.getElementById('side-drawer');
+  const overlay=document.getElementById('overlay');
+  function toggle(){const o=sideDrawer.classList.toggle('show');overlay.classList.toggle('show',o);
+    hamburger.setAttribute('aria-expanded',o);}
+  hamburger.addEventListener('click',toggle);overlay.addEventListener('click',toggle);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sideDrawer.classList.contains('show'))toggle();});
+  /* Blinking I */
+  const iNav=document.getElementById('color-changing-i-nav');iNav.style.color='green';
+  setInterval(()=>{iNav.style.color=iNav.style.color==='green'?'red':'green';},3000);
+</script>
+
+</body>
+</html>

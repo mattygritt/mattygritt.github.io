@@ -199,7 +199,7 @@
   <div id="nav-links">
     <a href="index.html">Home</a>
     <a href="ways.html">Ways to Be Independent</a>
-    <a href="r2t4_test.html">60% R2T4 Calculator</a>
+    <a href="r2t4_calc.html">60% R2T4 Calculator</a>
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact</a>
     <a href="privacy.html">Privacy Policy</a>
@@ -210,7 +210,7 @@
 <aside id="side-drawer" class="side-drawer" aria-hidden="true">
   <a href="index.html">Home</a>
   <a href="ways.html">Ways to Be Independent</a>
-  <a href="r2t4_test.html">60% R2T4 Calculator</a>
+  <a href="r2t4_calc.html">60% R2T4 Calculator</a>
   <a href="about.html">About Us</a>
   <a href="contact.html">Contact</a>
   <a href="privacy.html">Privacy Policy</a>
@@ -218,6 +218,10 @@
 </aside>
 <div id="overlay" class="overlay"></div>
 
+<div class="container">
+  <div class="banner">am<span id="color-changing-i">I</span>dependent.com</div>
+  <h3>Return to Title IV - 60% Mark Calculator</h3>
+	<h5>Enter the start and end date for your semseter. This calculator will determine what the 60% mark of your semster is. Please note that this is for informational purposes only and you should aways verify information with your school.</h5>
 <div id="r2t4-calculator-container" style="display: flex; justify-content: center; padding: 10px;">
     <style>
         #r2t4-wrapper { 
@@ -346,9 +350,6 @@
         }
     </script>
 </div>
-  <p><a href="index.html">Return to Home</a></p>
-</div>
-
   <div class="ad-container">
     <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR-AD-CLIENT-ID" data-ad-slot="YOUR-AD-SLOT-ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -435,7 +436,7 @@ function checkIndependence() {
     }
   }, 3000);
 // Highlight current page in navbar and side drawer
-const currentPage = window.location.pathname.split('/').pop(); // e.g., 'r2t4_test.html'
+const currentPage = window.location.pathname.split('/').pop(); // e.g., 'index.html'
 const navLinks = document.querySelectorAll('.navbar a, .side-drawer a');
 
 navLinks.forEach(link => {

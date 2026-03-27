@@ -3,32 +3,192 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>amidependent.com – Thank You</title>
+<title>amidependent.com</title>
 <style>
-  body{font-family:Arial,sans-serif;background:#dcdcdc;color:#000;margin:0;
-       padding-top:70px;display:flex;flex-direction:column;align-items:center;min-height:100vh;}
-  a{color:inherit;text-decoration:none}
-  /* NAVBAR (same as other pages) */
-  .navbar{position:fixed;top:0;left:0;right:0;height:60px;background:#fff;
-          box-shadow:0 2px 4px rgba(0,0,0,.1);display:flex;justify-content:space-between;
-          align-items:center;padding:0 16px;z-index:1000;}
-  .navbar-logo{font-weight:700;font-size:1.25rem;}
-  .navbar-logo span{font-family:"Courier New",monospace;color:green;text-transform:uppercase}
-  #nav-links{display:none;gap:24px;} #nav-links a{font-weight:500;}
-  .hamburger{width:28px;height:22px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;}
-  .hamburger span{height:4px;background:#000;border-radius:2px;}
+  body {
+    font-family: Arial, sans-serif;
+    background: #dcdcdc;
+    color: black;
+    margin: 0;
+    padding-top: 70px; /* navbar height + some space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1000;
+  }
+  .navbar-logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .navbar-logo span {
+    font-family: "Courier New", monospace;
+    text-transform: uppercase;
+    color: green;
+  }
+  #nav-links {
+    display: none;
+    gap: 24px;
+  }
+  #nav-links a {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .hamburger {
+    width: 28px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .hamburger span {
+    height: 4px;
+    background: black;
+    border-radius: 2px;
+  }
+
   /* SIDE DRAWER */
-  .side-drawer{position:fixed;top:0;right:0;height:100%;width:250px;background:#fff;
-               box-shadow:-2px 0 5px rgba(0,0,0,.2);transform:translateX(100%);
-               transition:transform .3s ease;display:flex;flex-direction:column;padding:80px 20px;z-index:999;}
-  .side-drawer.show{transform:translateX(0);}
-  .side-drawer a{font-size:1.1rem;margin-bottom:16px;}
-  .overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.3);
-           display:none;z-index:998;} .overlay.show{display:block;}
-  /* CONTENT */
-  .container{width:100%;max-width:600px;text-align:center;padding:20px;}
-  h1{margin-bottom:12px;} p{line-height:1.5;margin-bottom:20px;}
-  @media(min-width:768px){.hamburger{display:none} #nav-links{display:flex}}
+  .side-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    z-index: 999;
+  }
+  .side-drawer.show {
+    transform: translateX(0);
+  }
+  .side-drawer a {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: black;
+    text-decoration: none;
+  }
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: none;
+    z-index: 998;
+  }
+  .overlay.show {
+    display: block;
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .banner {
+    font-size: 2em;
+    font-weight: 700;
+    padding: 10px;
+  }
+  .banner span {
+    font-family: "Courier New", monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: green;
+  }
+  .input-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  select,
+  input[type="date"] {
+    padding: 10px;
+    font-size: 1em;
+    min-width: 130px;
+  }
+  select {
+    min-width: 150px;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  #result {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+  #reason {
+    margin-top: 10px;
+    color: #555;
+    white-space: pre-line;
+  }
+  #error {
+    margin-top: 10px;
+    color: red;
+  }
+  .independent {
+    color: green;
+  }
+  .dependent {
+    color: red;
+  }
+
+  /* Special link style in reason message */
+  .reason-link {
+    color: #008000;
+    text-decoration: underline; /* solid underline */
+  }/* Hover effect for all links in navbar and side drawer */
+.navbar a:hover,
+.side-drawer a:hover {
+  color: #008000; /* green on hover */
+  transition: color 0.2s ease;
+}
+
+/* Current page link style */
+.navbar a.current,
+.side-drawer a.current {
+  color: red; /* current page is red */
+  font-weight: 700; /* optional: bold for emphasis */
+}
+  /* DESKTOP */
+  @media(min-width: 768px) {
+    .hamburger {
+      display: none;
+    }
+    #nav-links {
+      display: flex;
+    }
+  }
 </style>
 </head>
 <body>
@@ -59,9 +219,8 @@
 <div id="overlay" class="overlay"></div>
 
 <div class="container">
-  <h1>Return to Title IV - 60% Mark Calculator</h1>
-  <p>This is a tool created to help a user determine what the 60% mark <b><u>may</b></u> be. This is for informational purposes only.</p>
-<div id="r2t4-calculator-container" style="display: flex; justify-content: center; padding: 10px;">
+  <div class="banner">am<span id="color-changing-i">I</span>dependent.com</div>
+  <div id="r2t4-calculator-container" style="display: flex; justify-content: center; padding: 10px;">
     <style>
         #r2t4-wrapper { 
             background: #ffffff; 
@@ -187,23 +346,105 @@
             document.getElementById('rt4_breaks').value = '0';
             document.getElementById('r2t4-results').style.display = 'none';
         }
-    </script>
 </div>
   <p><a href="index.html">Return to Home</a></p>
 </div>
 
+  <div class="ad-container">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR-AD-CLIENT-ID" data-ad-slot="YOUR-AD-SLOT-ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</div>
+
 <script>
-  /* Drawer logic */
-  const hamburger=document.getElementById('hamburger');
-  const sideDrawer=document.getElementById('side-drawer');
-  const overlay=document.getElementById('overlay');
-  function toggle(){const o=sideDrawer.classList.toggle('show');overlay.classList.toggle('show',o);
-    hamburger.setAttribute('aria-expanded',o);}
-  hamburger.addEventListener('click',toggle);overlay.addEventListener('click',toggle);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sideDrawer.classList.contains('show'))toggle();});
-  /* Blinking I */
-  const iNav=document.getElementById('color-changing-i-nav');iNav.style.color='green';
-  setInterval(()=>{iNav.style.color=iNav.style.color==='green'?'red':'green';},3000);
+  // Hamburger toggle and overlay logic
+  const hamburger = document.getElementById('hamburger');
+  const sideDrawer = document.getElementById('side-drawer');
+  const overlay = document.getElementById('overlay');
+
+  function toggleDrawer() {
+    const isOpen = sideDrawer.classList.toggle('show');
+    overlay.classList.toggle('show', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    sideDrawer.setAttribute('aria-hidden', !isOpen);
+  }
+
+  hamburger.addEventListener('click', toggleDrawer);
+  overlay.addEventListener('click', toggleDrawer);
+
+  // Accessibility: close drawer on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sideDrawer.classList.contains('show')) {
+      toggleDrawer();
+    }
+  });
+
+  // Dependency checker logic
+function checkIndependence() {
+  const awardYear = parseInt(document.getElementById('awardYear').value, 10);
+  const dobInput = document.getElementById('dob').value;
+  const errorEl = document.getElementById('error');
+  const resultEl = document.getElementById('result');
+  const reasonEl = document.getElementById('reason');
+
+  if (!dobInput) {
+    errorEl.textContent = 'Please enter a valid Date of Birth';
+    resultEl.textContent = '';
+    reasonEl.textContent = '';
+    return;
+  }
+  errorEl.textContent = '';
+
+  // Parse DOB in UTC to avoid timezone issues
+  const [year, month, day] = dobInput.split('-').map(Number);
+  const dob = new Date(Date.UTC(year, month - 1, day));
+
+  // Cutoff date: Jan 1 of (awardYear + 1 - 24)
+  const cutoffYear = awardYear + 1 - 24;
+  const cutoffDate = new Date(Date.UTC(cutoffYear, 0, 1)); // Jan 1 of cutoff year UTC
+
+  if (dob < cutoffDate) {
+    resultEl.textContent = 'Independent';
+    reasonEl.innerHTML = `✅ You are considered independent because your date of birth is before <b>January 1, ${cutoffYear}</b>.`;
+    resultEl.className = 'independent';
+  } else {
+    // Calculate the first award year where the user will be independent
+    const nextIndependentAwardStartYear = dob.getUTCFullYear() + 24; // year they turn 24
+    const nextIndependentAwardEndYear = nextIndependentAwardStartYear + 1;
+    
+    // Make sure it’s aligned with dropdown format: YYYY-YYYY
+    resultEl.textContent = 'Dependent';
+    reasonEl.innerHTML = `❌You are considered dependent by your Date of Birth because it is on or after <b>January 1, ${cutoffYear}</b>.<br><br>
+      You will qualify as independent in the <b>${nextIndependentAwardStartYear}-${nextIndependentAwardEndYear}</b> award year.<br><br>
+      <a href="ways.html" class="reason-link">See other ways you can be considered independent</a>`;
+    resultEl.className = 'dependent';
+  }
+}
+  // Blinking "I"s alternating colors out of sync
+  const i1 = document.getElementById('color-changing-i');
+  const i2 = document.getElementById('color-changing-i-nav');
+  i1.style.color = 'green';
+  i2.style.color = 'red';
+
+  setInterval(() => {
+    if (i1.style.color === 'green') {
+      i1.style.color = 'red';
+      i2.style.color = 'green';
+    } else {
+      i1.style.color = 'green';
+      i2.style.color = 'red';
+    }
+  }, 3000);
+// Highlight current page in navbar and side drawer
+const currentPage = window.location.pathname.split('/').pop(); // e.g., 'r2t4_test.html'
+const navLinks = document.querySelectorAll('.navbar a, .side-drawer a');
+
+navLinks.forEach(link => {
+  const linkPage = link.getAttribute('href');
+  if (linkPage === currentPage) {
+    link.classList.add('current');
+  }
+});
 </script>
 
 </body>

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KS87SFRL4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1KS87SFRL4');
+</script>
+
+<link rel="icon" type="image/png" href="https://amidependent.com/favicon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="https://amidependent.com/favicon/favicon.svg">
+<link rel="shortcut icon" href="https://amidependent.com/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="https://amidependent.com/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="amidependent.com">
+<link rel="manifest" href="https://amidependent.com/favicon/site.webmanifest">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule of Reductions Loan Calculator | amidependent.com</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #dcdcdc;
+    color: black;
+    margin: 0;
+    padding-top: 70px; /* navbar height + some space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1000;
+  }
+  .navbar-logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .navbar-logo span {
+    font-family: "Courier New", monospace;
+    text-transform: uppercase;
+    color: green;
+  }
+  #nav-links {
+    display: none;
+    gap: 24px;
+  }
+  #nav-links a {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .hamburger {
+    width: 28px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .hamburger span {
+    height: 4px;
+    background: black;
+    border-radius: 2px;
+  }
+
+  /* SIDE DRAWER */
+  .side-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    z-index: 999;
+  }
+  .side-drawer.show {
+    transform: translateX(0);
+  }
+  .side-drawer a {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: black;
+    text-decoration: none;
+  }
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: none;
+    z-index: 998;
+  }
+  .overlay.show {
+    display: block;
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .container.wide {
+    max-width: 1000px;
+  }
+  .banner {
+    font-size: 2em;
+    font-weight: 700;
+    padding: 10px;
+    text-align: center;
+  }
+  .banner span {
+    font-family: "Courier New", monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: green;
+  }
+
+  /* Hover effect for all links in navbar and side drawer */
+  .navbar a:hover,
+  .side-drawer a:hover {
+    color: #008000; /* green on hover */
+    transition: color 0.2s ease;
+  }
+
+  /* Current page link style */
+  .navbar a.current,
+  .side-drawer a.current {
+    color: red; /* current page is red */
+    font-weight: 700;
+  }
+
+  /* DESKTOP (wider breakpoint because the menu now has a long link) */
+  @media(min-width: 1280px) {
+    .hamburger {
+      display: none;
+    }
+    #nav-links {
+      display: flex;
+    }
+  }
+</style>
+<style id="sor-css">
+.sor{
+  --bg:#eef2f6; --surface:#ffffff; --ink:#14212e; --muted:#566574; --line:#d5dde5;
+  --primary:#1f4e79; --primary-ink:#ffffff; --soft:#e6eef6; --cut:#b45309; --cut-soft:#fdf0e1;
+  --ok:#1b7a4b; --ok-soft:#e3f4ea; --field:#ffffff; --focus:#2b7bd0;
+  --ptext:var(--primary); --bgink:var(--muted); --hdr:var(--primary); --hdr-ink:#ffffff;
+}
+.sor *{box-sizing:border-box}
+[hidden]{display:none!important}
+.sor{max-width:980px;margin:0 auto;padding:20px 16px 32px}
+.sor h1{font-size:1.7rem;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+.sor h2{font-size:1.15rem;margin:0 0 4px}
+.sor p{margin:0}
+.sor .lede{color:var(--muted);max-width:68ch}
+.sor .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:16px}
+.sor .card .sub{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+.sor .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.sor label{display:block;font-size:.9rem;font-weight:600}
+.sor label .hint{display:block;font-weight:400;color:var(--muted);font-size:.8rem;margin-top:2px}
+.sor input[type=number],.sor select,.sor input[type=text],.sor textarea{
+  width:100%;margin-top:5px;padding:9px 10px;font:inherit;color:var(--ink);background:var(--field);
+  border:1px solid var(--line);border-radius:6px}
+.sor input:focus-visible,.sor select:focus-visible,.sor textarea:focus-visible,.sor button:focus-visible,.sor summary:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.sor .check{display:flex;gap:10px;align-items:flex-start;font-weight:600;cursor:pointer}
+.sor .check input{width:20px;height:20px;margin:2px 0 0;flex:none}
+.sor .check small{display:block;font-weight:400;color:var(--muted)}
+.sor .terms{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.sor fieldset.term{border:1px solid var(--line);border-radius:8px;padding:12px 14px 14px;margin:0;background:var(--surface)}
+.sor fieldset.term legend{font-weight:700;padding:0 6px}
+.sor .term .fields{display:grid;gap:12px;margin-top:12px}
+.sor .term .note{font-size:.8rem;color:var(--muted)}
+.sor .meterwrap{margin:2px 0 14px}
+.sor .meter{height:12px;border-radius:6px;background:var(--soft);overflow:hidden;margin-top:6px}
+.sor .meter .fill{height:100%;background:var(--primary);width:0;transition:width .25s}
+@media (prefers-reduced-motion: reduce){.sor .meter .fill{transition:none}
+}
+.sor .meterlabel{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.92rem}
+.sor .meterlabel strong{font-size:1.05rem}
+.sor .stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
+.sor .stat{background:var(--soft);border-radius:8px;padding:10px 12px}
+.sor .stat .k{font-size:.78rem;color:var(--muted)}
+.sor .stat .v{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums}
+.sor .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.sor table.matrix{border-collapse:collapse;width:100%;min-width:560px;font-variant-numeric:tabular-nums}
+.sor .matrix th,.sor .matrix td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.sor .matrix th:first-child,.sor .matrix td:first-child{text-align:left;position:sticky;left:0;background:var(--surface)}
+.sor .matrix thead th{background:var(--soft);font-size:.9rem;vertical-align:bottom}
+.sor .matrix thead th:first-child{background:var(--soft)}
+.sor .matrix tr.sect td{background:var(--soft);font-weight:700;font-size:.85rem;text-align:left}
+.sor .matrix tr.total td{font-weight:700}
+.sor .matrix tr:last-child td{border-bottom:0}
+.sor .badge{display:inline-block;font-size:.72rem;font-weight:600;padding:1px 7px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.sor .badge.paid{background:var(--ok-soft);color:var(--ok)}
+.sor .badge.pend{background:var(--soft);color:var(--ptext)}
+.sor .cut{color:var(--cut);font-weight:700}
+.sor .tag{display:block;font-size:.72rem;font-weight:400;color:var(--muted)}
+.sor .cellpaid{color:var(--muted)}
+.sor .cellproj{font-weight:700}
+.sor ul.notes{margin:14px 0 0;padding-left:20px}
+.sor ul.notes li{margin:5px 0}
+.sor ul.notes li.warn{color:var(--cut)}
+.sor button{font:inherit;cursor:pointer;border-radius:6px;padding:9px 14px;border:1px solid var(--primary);background:var(--primary);color:var(--primary-ink);font-weight:600}
+.sor button.ghost{background:transparent;color:var(--ptext)}
+.sor .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.sor textarea.code{font:.82rem/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;min-height:150px;resize:vertical}
+.sor .fine{font-size:.82rem;color:var(--muted);margin-top:16px}
+.sor .status{font-size:.88rem;color:var(--ok);font-weight:600}
+.sor input[type=color]{width:100%;height:42px;padding:3px;margin-top:5px;border:1px solid var(--line);border-radius:6px;background:var(--field);cursor:pointer}
+.sor details.adv{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.sor details.adv summary{cursor:pointer;font-weight:600;font-size:.92rem}
+.sor .brandsub{font-size:.95rem;opacity:.9}
+.sor.branded header{background:var(--hdr);color:var(--hdr-ink);padding:16px 18px;border-radius:10px}
+.sor.branded header .lede{display:none}
+.sor.branded .stats{display:none}
+.sor.branded .fine{color:var(--bgink)}
+
+
+.sor{font:16px/1.5 Arial,Helvetica,sans-serif;color:var(--ink);text-align:left}
+.sor.branded{background:var(--bg);border-radius:10px}
+.sor button{width:auto}
+/* ===== BRAND FOOTER: matches the amidependent.com logo styling ===== */
+.sor .brandFooter{display:flex;align-items:baseline;justify-content:center;gap:.35em;flex-wrap:wrap;margin-top:16px;padding:14px 18px;border-radius:10px;background:#ffffff;color:#000000;font-family:Arial,sans-serif;font-weight:700;font-size:1.25rem;text-decoration:none;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+.sor .brandFooter .site{color:#000000}
+.sor .brandFooter .bf-i{font-family:"Courier New",monospace;text-transform:uppercase;font-weight:700;color:red;animation:bfCycle 6s infinite}
+.sor .brandFooter:hover .site{color:#008000;transition:color 0.2s ease}
+@keyframes bfCycle{0%,49.99%{color:red}50%,100%{color:green}}
+@media (prefers-reduced-motion: reduce){.sor .brandFooter .bf-i{animation:none;color:red}}
+/* ===== end brand footer ===== */
+#embedWrap{padding-top:0}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-logo">am<span id="color-changing-i-nav" style="color: red;">I</span>dependent</div>
+  <div id="hamburger" class="hamburger" role="button" aria-label="Open menu" aria-expanded="false" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div id="nav-links">
+    <a href="https://amidependent.com/index.html">Home</a>
+    <a href="https://amidependent.com/ways.html">Ways to Be Independent</a>
+    <a href="https://amidependent.com/r2t4_calc.html">60% R2T4 Calculator</a>
+    <a href="https://amidependent.com/sor_calc.html" class="current">Schedule of Reductions Loan Calculator</a>
+    <a href="https://amidependent.com/about.html">About Us</a>
+    <a href="https://amidependent.com/contact.html">Contact</a>
+    <a href="https://amidependent.com/privacy.html">Privacy Policy</a>
+    <a href="https://amidependent.com/affiliates.html">Affiliates</a>
+  </div>
+</nav>
+
+<aside id="side-drawer" class="side-drawer" aria-hidden="true">
+  <a href="https://amidependent.com/index.html">Home</a>
+  <a href="https://amidependent.com/ways.html">Ways to Be Independent</a>
+  <a href="https://amidependent.com/r2t4_calc.html">60% R2T4 Calculator</a>
+  <a href="https://amidependent.com/sor_calc.html" class="current">Schedule of Reductions Loan Calculator</a>
+  <a href="https://amidependent.com/about.html">About Us</a>
+  <a href="https://amidependent.com/contact.html">Contact</a>
+  <a href="https://amidependent.com/privacy.html">Privacy Policy</a>
+  <a href="https://amidependent.com/affiliates.html">Affiliates</a>
+</aside>
+<div id="overlay" class="overlay"></div>
+
+<div class="container wide">
+  <div class="banner">am<span id="color-changing-i" style="color: green;">I</span>dependent.com</div>
+
+  <div class="sor" id="app">
+
+  <header id="hdr">
+    <h1 id="title">Schedule of Reductions Loan Calculator</h1>
+    <p class="brandsub" id="brandSub" hidden>Schedule of Reductions Loan Calculator</p>
+    <p class="lede">See how enrolling less than full-time changes Direct Loan amounts for the award year, and how dropping credits after a disbursement can reduce the loans still to come.</p>
+  </header>
+
+  <section class="card" aria-labelledby="h-loans">
+    <h2 id="h-loans">Loan amounts for the award year</h2>
+    <p class="sub">Enter the full-time annual amounts the student is eligible for, before any reduction.</p>
+    <div class="grid">
+      <label for="sub">Direct Subsidized, annual ($)
+        <input type="number" id="sub" min="0" step="1" inputmode="numeric" value="3500">
+      </label>
+      <label for="unsub">Direct Unsubsidized, annual ($)
+        <input type="number" id="unsub" min="0" step="1" inputmode="numeric" value="2000">
+      </label>
+    </div>
+    <details class="adv" id="adv" open>
+      <summary>Hours and disbursement settings</summary>
+    <div class="grid" style="margin-top:12px">
+      <label for="ft">Full-time hours per term
+        <input type="number" id="ft" min="1" step="0.5" inputmode="decimal" value="12">
+      </label>
+      <label for="ht">Half-time hours per term
+        <span class="hint">Below this, the term is not loan eligible.</span>
+        <input type="number" id="ht" min="0" step="0.5" inputmode="decimal" value="6">
+      </label>
+      <label for="method">Disbursement method
+        <span class="hint">How remaining loan money is split across terms.</span>
+        <select id="method">
+          <option value="equal">Equal disbursements</option>
+          <option value="prop">Proportional (credit-weighted)</option>
+        </select>
+      </label>
+    </div>
+    </details>
+    <div style="margin-top:14px">
+      <label class="check" for="summer">
+        <input type="checkbox" id="summer">
+        <span>Include a Summer term in this award year
+          <small>Adds Summer as a third term after Spring.</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="h-enroll">
+    <h2 id="h-enroll">Term enrollment data</h2>
+    <p class="sub">For each term, choose whether the loan is still pending or has already been disbursed.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-matrix">
+    <h2 id="h-matrix">Term-by-term matrix</h2>
+    <p class="sub">Loan amounts by term, with the Schedule of Reductions applied.</p>
+    <div class="meterwrap">
+      <div class="meterlabel"><span>Enrollment for the award year (hours counted &divide; full-time hours)</span><strong id="pctText">0%</strong></div>
+      <div class="meter" role="img" aria-label="Annual enrollment intensity"><div class="fill" id="pctFill"></div></div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="scroll"><table class="matrix" id="matrix"></table></div>
+    <ul class="notes" id="notes"></ul>
+    <div class="row"><button type="button" class="ghost" id="reset">Reset calculator</button></div>
+  </section>
+
+  <a class="brandFooter" id="brandFooter" href="https://amidependent.com" target="_blank" rel="noopener" aria-label="Calculator From amIdependent.com" hidden>
+    <span>Calculator From</span>
+    <span class="site">am<span class="bf-i">I</span>dependent.com</span>
+  </a>
+
+  <p class="fine" id="disc">This is an educational estimate, not a system of record. It follows 34 CFR 685.203(m) and the Department of Education's July 2026 FAQ on reducing annual loan limits for less-than-full-time enrollment. Your school's own policies (disbursement method, rounding, and whether already-paid terms are adjusted) may differ, so confirm results with your financial aid office.</p>
+</div>
+
+  <div class="sor" id="embedWrap">
+  <section class="card" id="embedCard" aria-labelledby="h-embed">
+    <h2 id="h-embed">Add this calculator to your website</h2>
+    <p class="sub">Schools can post this calculator for faculty, staff, and students.</p>
+    <label class="check" for="wantEmbed">
+      <input type="checkbox" id="wantEmbed">
+      <span>I'd like to add this calculator to my website
+        <small>The calculator above becomes a widget preview you can customize.</small></span>
+    </label>
+    <div id="embedBox" hidden style="margin-top:16px">
+      <div class="grid">
+        <label for="schoolName">School name
+          <input type="text" id="schoolName" maxlength="80" placeholder="Example State University" autocomplete="off">
+        </label>
+        <label for="cAccent">Accent color
+          <input type="color" id="cAccent" value="#1f4e79">
+        </label>
+        <label for="cHeader">Header color
+          <input type="color" id="cHeader" value="#1f4e79">
+        </label>
+        <label for="cBg">Background color
+          <input type="color" id="cBg" value="#eef2f6">
+        </label>
+      </div>
+      <div class="row"><button type="button" class="ghost" id="resetColors">Reset colors</button></div>
+      <label for="embedCode" style="margin-top:16px">Copy this code and paste it into your web page
+        <textarea id="embedCode" class="code" readonly></textarea>
+      </label>
+      <div class="row">
+        <button type="button" id="copyBtn">Copy code</button>
+        <span class="status" id="copyStatus" role="status" aria-live="polite"></span>
+      </div>
+      <p class="fine">Everything is included in the code, so there is no web address to enter. Paste it into any page that accepts HTML. The widget resizes itself to fit your page.</p>
+    </div>
+  </section>
+
+  </div>
+</div>
+
+<script>
+  // Hamburger toggle and overlay logic
+  const hamburger = document.getElementById('hamburger');
+  const sideDrawer = document.getElementById('side-drawer');
+  const overlay = document.getElementById('overlay');
+
+  function toggleDrawer() {
+    const isOpen = sideDrawer.classList.toggle('show');
+    overlay.classList.toggle('show', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    sideDrawer.setAttribute('aria-hidden', !isOpen);
+  }
+
+  hamburger.addEventListener('click', toggleDrawer);
+  overlay.addEventListener('click', toggleDrawer);
+
+  // Accessibility: close drawer on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sideDrawer.classList.contains('show')) {
+      toggleDrawer();
+    }
+  });
+
+  // Blinking "I"s alternating colors out of sync
+  const i1 = document.getElementById('color-changing-i');
+  const i2 = document.getElementById('color-changing-i-nav');
+  i1.style.color = 'green';
+  i2.style.color = 'red';
+
+  setInterval(() => {
+    if (i1.style.color === 'green') {
+      i1.style.color = 'red';
+      i2.style.color = 'green';
+    } else {
+      i1.style.color = 'green';
+      i2.style.color = 'red';
+    }
+  }, 3000);
+
+  // Highlight current page in navbar and side drawer
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('.navbar a, .side-drawer a');
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage) {
+      link.classList.add('current');
+    }
+  });
+</script>
+
+<script id="sor-js">
+(function () {
+  var APP_HTML = document.getElementById('app').outerHTML;
+  var NAMES = ['Fall', 'Spring', 'Summer'];
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- helpers ---------- */
+  function val(id) {
+    var el = $(id); if (!el) return null;
+    var s = el.value.trim(); if (s === '') return null;
+    var x = parseFloat(s);
+    return (isFinite(x) && x >= 0) ? x : null;
+  }
+  function money(n) {
+    var s = '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+    return n < 0 ? '\u2212' + s : s;
+  }
+  function hrs(n) { return (Math.round(n * 100) / 100).toString(); }
+
+  /* ---------- build term inputs ---------- */
+  function buildTermUI() {
+    var html = '';
+    for (var i = 0; i < 3; i++) {
+      html += '<fieldset class="term" id="term' + i + '"' + (i === 2 ? ' hidden' : '') + '>' +
+        '<legend>' + NAMES[i] + ' term</legend>' +
+        '<div class="fields">' +
+          '<label for="h' + i + '">Credit hours enrolled' +
+            '<input type="number" id="h' + i + '" min="0" step="0.5" inputmode="decimal" value="' + (i < 2 ? 12 : '') + '"></label>' +
+          '<label class="check" for="st' + i + '"><input type="checkbox" id="st' + i + '"><span>Loans Have Disbursed</span></label>' +
+        '</div>' +
+        '<div class="fields" id="disb' + i + '" hidden>' +
+          '<label for="d' + i + '">Hours at Disbursement<input type="number" id="d' + i + '" min="0" step="0.5" inputmode="decimal"></label>' +
+          '<label for="c' + i + '">Current Enrolled Hrs (after drops/Ws)<input type="number" id="c' + i + '" min="0" step="0.5" inputmode="decimal"></label>' +
+          '<label for="sp' + i + '">Actual Sub Paid ($)<input type="number" id="sp' + i + '" min="0" step="1" inputmode="numeric"></label>' +
+          '<label for="up' + i + '">Actual Unsub Paid ($)<input type="number" id="up' + i + '" min="0" step="1" inputmode="numeric"></label>' +
+          '<p class="note">Leave the paid amounts blank to have them calculated from the hours at disbursement. If Current Enrolled Hrs is blank, the credit hours enrolled above are used.</p>' +
+        '</div>' +
+      '</fieldset>';
+    }
+    $('terms').innerHTML = html;
+  }
+
+  function syncTermVisibility() {
+    $('term2').hidden = !$('summer').checked;
+    for (var i = 0; i < 3; i++) {
+      $('disb' + i).hidden = !$('st' + i).checked;
+    }
+  }
+
+  /* ---------- read inputs ---------- */
+  function readTerms() {
+    var n = $('summer').checked ? 3 : 2, arr = [];
+    for (var i = 0; i < n; i++) {
+      var disb = $('st' + i).checked;
+      var H = val('h' + i), D = val('d' + i), C = val('c' + i), sp = val('sp' + i), up = val('up' + i);
+      var warn = [];
+      if (!disb && H === null) { H = 0; warn.push('Enter credit hours for ' + NAMES[i] + '.'); }
+      if (disb) {
+        if (D === null) { D = (C === null ? 0 : C); warn.push('Enter hours at disbursement for ' + NAMES[i] + '.'); }
+        if (C === null) C = (H === null ? D : H);
+      }
+      arr.push({
+        i: i, name: NAMES[i], disb: disb, H: H, D: D, C: C,
+        sp: sp === null ? null : Math.round(sp),
+        up: up === null ? null : Math.round(up),
+        warn: warn
+      });
+    }
+    return arr;
+  }
+
+  /* ---------- core math ---------- */
+  // Split R dollars across items [{i,h}] equally or by hours. Remainder goes to the last term.
+  function dist(R, items, method) {
+    var out = {}, k = items.length;
+    if (!k || R <= 0) { items.forEach(function (x) { out[x.i] = 0; }); return out; }
+    var rem = R, H = items.reduce(function (s, x) { return s + x.h; }, 0);
+    items.forEach(function (x, j) {
+      var a;
+      if (j === k - 1) a = rem;
+      else {
+        a = (method === 'prop' && H > 0) ? Math.round(R * x.h / H) : Math.round(R / k);
+        a = Math.min(a, rem);
+      }
+      out[x.i] = a; rem -= a;
+    });
+    return out;
+  }
+
+  function planSplit(A, n) {
+    var items = []; for (var i = 0; i < n; i++) items.push({ i: i, h: 1 });
+    var d = dist(A, items, 'equal'), arr = [];
+    for (var j = 0; j < n; j++) arr.push(d[j]);
+    return arr;
+  }
+
+  // mode 'atDisb': disbursed terms count their hours at disbursement (used to estimate blank paid amounts).
+  // mode 'current': disbursed terms count current enrolled hours and use the amounts actually paid.
+  function runPass(terms, mode, A, FT, HT, method, auto) {
+    var n = terms.length;
+    var hours = terms.map(function (t) { return t.disb ? (mode === 'atDisb' ? t.D : t.C) : t.H; });
+    var total = hours.reduce(function (s, h) { return s + h; }, 0);
+    var raw = FT * n > 0 ? total / (FT * n) : 0;
+    var pct = Math.min(100, Math.round(raw * 100 + 1e-9));
+    var res = { pct: pct, hours: hours, total: total, per: {} };
+
+    ['sub', 'unsub'].forEach(function (type) {
+      var key = type === 'sub' ? 'sp' : 'up';
+      var reduced = Math.round(A[type] * pct / 100 + 1e-9);
+      var fixed = 0, free = [], amts = [];
+      terms.forEach(function (t, i) {
+        if (t.disb) {
+          var entered = t[key];
+          if (mode === 'current') {
+            var amt = entered !== null ? entered : auto.per[type].amts[i].amt;
+            fixed += amt; amts[i] = { amt: amt, kind: 'disbursed', auto: entered === null };
+          } else if (entered !== null) {
+            fixed += entered; amts[i] = { amt: entered, kind: 'disbursed', auto: false };
+          } else free.push(i);
+        } else free.push(i);
+      });
+      var R = Math.max(0, reduced - fixed);
+      var eligible = free.filter(function (i) { return hours[i] > 0 && hours[i] >= HT; });
+      var d = dist(R, eligible.map(function (i) { return { i: i, h: hours[i] }; }), method);
+      var given = 0;
+      free.forEach(function (i) {
+        var a = d[i] || 0; given += a;
+        amts[i] = { amt: a, kind: terms[i].disb ? 'disbursed' : 'pending', auto: terms[i].disb, inelig: eligible.indexOf(i) < 0 };
+      });
+      res.per[type] = { reduced: reduced, fixed: fixed, remaining: R, unalloc: R - given, amts: amts };
+    });
+    return res;
+  }
+
+  /* ---------- render ---------- */
+  function render() {
+    syncTermVisibility();
+    var terms = readTerms(), n = terms.length;
+    var A = { sub: Math.round(val('sub') || 0), unsub: Math.round(val('unsub') || 0) };
+    var FT = val('ft') || 12;
+    var HT = val('ht'); if (HT === null) HT = FT / 2;
+    var method = $('method').value;
+
+    var p1 = runPass(terms, 'atDisb', A, FT, HT, method, null);
+    var p2 = runPass(terms, 'current', A, FT, HT, method, p1);
+    var types = ['sub', 'unsub'], typeName = { sub: 'Direct Subsidized', unsub: 'Direct Unsubsidized' };
+    var plan = { sub: planSplit(A.sub, n), unsub: planSplit(A.unsub, n) };
+
+    // meter
+    $('pctText').textContent = p2.pct + '%';
+    $('pctFill').style.width = p2.pct + '%';
+
+    // stats
+    var reducedTotal = p2.per.sub.reduced + p2.per.unsub.reduced;
+    var paidTotal = p2.per.sub.fixed + p2.per.unsub.fixed;
+    var projTotal = 0;
+    types.forEach(function (t) { p2.per[t].amts.forEach(function (a) { if (a.kind === 'pending') projTotal += a.amt; }); });
+    var fullTotal = A.sub + A.unsub;
+    $('stats').innerHTML =
+      stat('Full-time annual total', money(fullTotal)) +
+      stat('Reduced annual total', money(reducedTotal)) +
+      stat('Paid to date', money(paidTotal)) +
+      stat('Still to be disbursed', money(projTotal));
+
+    // matrix
+    var h = '<thead><tr><th scope="col">&nbsp;</th>';
+    terms.forEach(function (t) {
+      h += '<th scope="col">' + t.name + '<span class="badge ' + (t.disb ? 'paid' : 'pend') + '">' + (t.disb ? 'Disbursed' : 'Pending') + '</span></th>';
+    });
+    h += '<th scope="col">Award year</th></tr></thead><tbody>';
+
+    // hours row
+    h += sect('Enrollment hours counted', n);
+    h += '<tr><td>Hours</td>';
+    terms.forEach(function (t, i) {
+      var c = hrs(p2.hours[i]);
+      if (t.disb && t.C < t.D) c += '<span class="tag">was ' + hrs(t.D) + ' at disbursement</span>';
+      h += '<td>' + c + '</td>';
+    });
+    h += '<td>' + hrs(p2.total) + ' of ' + hrs(FT * n) + '</td></tr>';
+
+    // full-time plan totals (not displayed; used for the "Change vs. full-time plan" row)
+    var planTerm = [], planAll = 0;
+    for (var i = 0; i < n; i++) { planTerm[i] = plan.sub[i] + plan.unsub[i]; planAll += planTerm[i]; }
+
+    // with SOR
+    h += sect('With Schedule of Reductions (' + p2.pct + '%)', n);
+    var revTerm = []; for (var z = 0; z < n; z++) revTerm[z] = 0;
+    var revAll = 0;
+    types.forEach(function (t) {
+      var per = p2.per[t], rowTotal = 0;
+      h += '<tr><td>' + typeName[t] + '</td>';
+      per.amts.forEach(function (a, i) {
+        rowTotal += a.amt; revTerm[i] += a.amt;
+        if (a.kind === 'disbursed') {
+          h += '<td class="cellpaid">' + money(a.amt) + '<span class="tag">paid' + (a.auto ? ' (calculated)' : '') + '</span></td>';
+        } else {
+          h += '<td class="cellproj">' + money(a.amt) + (a.inelig ? '<span class="tag">below half-time</span>' : '') + '</td>';
+        }
+      });
+      revAll += rowTotal;
+      h += '<td>' + money(rowTotal) + '</td></tr>';
+    });
+    h += '<tr class="total"><td>Total</td>';
+    revTerm.forEach(function (a) { h += '<td>' + money(a) + '</td>'; });
+    h += '<td>' + money(revAll) + '</td></tr>';
+
+    // change
+    h += '<tr class="total"><td>Change vs. full-time plan</td>';
+    revTerm.forEach(function (a, i) { h += '<td>' + diff(a - planTerm[i]) + '</td>'; });
+    h += '<td>' + diff(revAll - planAll) + '</td></tr>';
+    h += '</tbody>';
+    $('matrix').innerHTML = h;
+
+    // notes
+    var notes = [], warns = [];
+    terms.forEach(function (t) {
+      t.warn.forEach(function (w) { warns.push(w); });
+      if (t.disb && t.C < t.D) {
+        notes.push(t.name + ' enrollment dropped from ' + hrs(t.D) + ' to ' + hrs(t.C) + ' hours after disbursement. The amount already paid is not reduced automatically; the lower annual limit is applied to the disbursements still to come.');
+      }
+      if (t.disb && (t.sp === null || t.up === null)) {
+        notes.push('Blank paid amounts for ' + t.name + ' were calculated from ' + hrs(t.D) + ' hours at disbursement.');
+      }
+    });
+    types.forEach(function (t) {
+      var per = p2.per[t];
+      if (per.fixed > per.reduced) {
+        notes.push(typeName[t] + ': paid to date (' + money(per.fixed) + ') is more than the reduced annual limit (' + money(per.reduced) + '), so no further ' + typeName[t].replace('Direct ', '') + ' is available. Your school decides whether to adjust the amount already paid.');
+      }
+      per.amts.forEach(function (a, i) {
+        if (a.kind === 'pending' && a.inelig && p2.hours[i] < HT && notes.indexOf(NAMES[i] + ' below half-time') < 0) {
+          notes.push(NAMES[i] + ' enrollment (' + hrs(p2.hours[i]) + ' hours) is below half-time, so that term is not loan eligible.');
+          notes.push(NAMES[i] + ' below half-time'); // marker, removed below
+        }
+      });
+      if (per.unalloc > 0) {
+        notes.push(typeName[t] + ': ' + money(per.unalloc) + ' of remaining eligibility could not be placed because no pending term is half-time or more.');
+      }
+    });
+    notes = notes.filter(function (x) { return !/ below half-time$/.test(x); });
+    // de-duplicate
+    notes = notes.filter(function (x, i) { return notes.indexOf(x) === i; });
+    var nh = '';
+    warns.forEach(function (w) { nh += '<li class="warn">' + w + '</li>'; });
+    notes.forEach(function (x) { nh += '<li>' + x + '</li>'; });
+    $('notes').innerHTML = nh;
+
+    sendHeight();
+  }
+
+  function stat(k, v) { return '<div class="stat"><div class="k">' + k + '</div><div class="v">' + v + '</div></div>'; }
+  function sect(label, n) { return '<tr class="sect"><td colspan="' + (n + 2) + '">' + label + '</td></tr>'; }
+  function diff(x) { return x < 0 ? '<span class="cut">' + money(x) + '</span>' : (x === 0 ? '$0' : '+' + money(x)); }
+
+  /* ---------- reset ---------- */
+  function reset() {
+    $('sub').value = 3500; $('unsub').value = 2000; $('ft').value = 12; $('ht').value = 6;
+    $('method').value = 'equal'; $('summer').checked = false;
+    for (var i = 0; i < 3; i++) {
+      $('st' + i).checked = false;
+      $('h' + i).value = i < 2 ? 12 : '';
+      ['d', 'c', 'sp', 'up'].forEach(function (p) { $(p + i).value = ''; });
+      dTouched[i] = false;
+    }
+    render();
+  }
+
+  /* ---------- branding / widget ---------- */
+  var DEFAULTS = { school: '', accent: '#1f4e79', header: '#1f4e79', bg: '#eef2f6' };
+  var BRAND_PROPS = ['--bg', '--surface', '--ink', '--muted', '--line', '--primary', '--primary-ink', '--ptext', '--soft',
+    '--cut', '--cut-soft', '--ok', '--ok-soft', '--field', '--focus', '--hdr', '--hdr-ink', '--bgink', 'color-scheme'];
+  var SHORT_DISC = 'Estimate only. Confirm amounts with your financial aid office.';
+  var TITLE0 = $('title').textContent, FULL_DISC = $('disc').textContent;
+
+  function okHex(h) { return /^#[0-9a-fA-F]{6}$/.test(h || ''); }
+  function rgb(h) { return [parseInt(h.substr(1, 2), 16), parseInt(h.substr(3, 2), 16), parseInt(h.substr(5, 2), 16)]; }
+  function toHex(a) {
+    return '#' + a.map(function (v) { v = Math.max(0, Math.min(255, Math.round(v))); return (v < 16 ? '0' : '') + v.toString(16); }).join('');
+  }
+  function mix(a, b, t) { var x = rgb(a), y = rgb(b); return toHex([x[0] + (y[0] - x[0]) * t, x[1] + (y[1] - x[1]) * t, x[2] + (y[2] - x[2]) * t]); }
+  function lum(h) {
+    var c = rgb(h).map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function inkOn(h) { return lum(h) > 0.18 ? '#14212e' : '#ffffff'; }
+
+  function sanitize(c) {
+    c = c || {};
+    return {
+      school: String(c.school || '').slice(0, 80),
+      accent: okHex(c.accent) ? c.accent : DEFAULTS.accent,
+      header: okHex(c.header) ? c.header : DEFAULTS.header,
+      bg: okHex(c.bg) ? c.bg : DEFAULTS.bg
+    };
+  }
+  function readCfg() {
+    return sanitize({ school: $('schoolName').value, accent: $('cAccent').value, header: $('cHeader').value, bg: $('cBg').value });
+  }
+  function applyBrand(c) {
+    var a = c.accent, hd = c.header, bg = c.bg, r = $('app').style;
+    var v = {
+      '--bg': bg, '--surface': '#ffffff', '--ink': '#14212e', '--muted': '#566574', '--line': '#d5dde5',
+      '--primary': a, '--primary-ink': inkOn(a), '--ptext': lum(a) > 0.3 ? mix(a, '#000000', 0.5) : a,
+      '--soft': mix(a, '#ffffff', 0.9), '--cut': '#b45309', '--cut-soft': '#fdf0e1', '--ok': '#1b7a4b', '--ok-soft': '#e3f4ea',
+      '--field': '#ffffff', '--focus': a, '--hdr': hd, '--hdr-ink': inkOn(hd), '--bgink': inkOn(bg), 'color-scheme': 'light'
+    };
+    for (var k in v) r.setProperty(k, v[k]);
+    if (!$('embedCard')) document.body.style.background = bg;
+    var school = c.school.trim();
+    $('title').textContent = school || TITLE0;
+    $('brandSub').hidden = !school;
+    $('app').classList.add('branded');
+    $('brandFooter').hidden = false;
+    $('disc').textContent = SHORT_DISC;
+    sendHeight();
+  }
+  function clearBrand() {
+    var r = $('app').style;
+    BRAND_PROPS.forEach(function (k) { r.removeProperty(k); });
+    $('title').textContent = TITLE0;
+    $('brandSub').hidden = true;
+    $('app').classList.remove('branded');
+    $('brandFooter').hidden = true;
+    $('disc').textContent = FULL_DISC;
+    sendHeight();
+  }
+
+  /* ---------- embed code ---------- */
+  function buildEmbed() {
+    var cfg = JSON.stringify(readCfg()).replace(/</g, '\\u003c');
+    var end = '<' + '/script>';
+    var wrap = 'html,body{margin:0}body{font-family:Arial,Helvetica,sans-serif}';
+    var doc = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1"><title>Schedule of Reductions Calculator</title>' +
+      '<style>' + wrap + '</style><style id="sor-css">' + $('sor-css').textContent + '</style>' +
+      '<script id="sor-config" type="application/json">' + cfg + end + '</head><body>' + APP_HTML +
+      '<script id="sor-js">' + $('sor-js').textContent + end + '</body></html>';
+    var id = 'sor-' + Math.random().toString(36).slice(2, 8);
+    var esc = doc.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+    $('embedCode').value =
+      '<iframe id="' + id + '" srcdoc="' + esc + '" title="Schedule of Reductions Calculator" ' +
+      'style="width:100%;height:1400px;border:0;" loading="lazy"></iframe>\n' +
+      '<script>\n' +
+      'window.addEventListener("message",function(e){\n' +
+      '  var f=document.getElementById("' + id + '");\n' +
+      '  if(f&&e.source===f.contentWindow&&e.data&&e.data.sorCalcHeight){f.style.height=e.data.sorCalcHeight+"px";}\n' +
+      '});\n' + end;
+  }
+  function copyCode() {
+    var ta = $('embedCode'), st = $('copyStatus');
+    function ok() { st.textContent = 'Copied to clipboard'; setTimeout(function () { st.textContent = ''; }, 2500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(ok, function () { ta.select(); try { document.execCommand('copy'); ok(); } catch (e) { st.textContent = 'Select the code and copy it manually'; } });
+    } else {
+      ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { st.textContent = 'Select the code and copy it manually'; }
+    }
+  }
+
+  /* ---------- iframe auto-resize ---------- */
+  var embedded = false;
+  try { embedded = window.self !== window.top; } catch (e) { embedded = true; }
+  function sendHeight() {
+    if (!embedded) return;
+    var h = Math.ceil(document.body.getBoundingClientRect().height);
+    try { window.parent.postMessage({ sorCalcHeight: h }, '*'); } catch (e) {}
+  }
+
+  /* ---------- init ---------- */
+  var BRAND_IDS = { schoolName: 1, cAccent: 1, cHeader: 1, cBg: 1 };
+  function brandChanged() {
+    if ($('wantEmbed').checked) applyBrand(readCfg());
+    buildEmbed();
+  }
+  buildTermUI();
+  var cfg = null, cn = $('sor-config');
+  if (cn) { try { cfg = sanitize(JSON.parse(cn.textContent)); } catch (e) { cfg = null; } }
+  // "Hours at Disbursement" starts out matching "Credit hours enrolled" until the user edits it themselves.
+  var dTouched = [false, false, false];
+  function syncDisbHours(i) {
+    if (!dTouched[i] && $('st' + i).checked) $('d' + i).value = $('h' + i).value;
+  }
+  document.addEventListener('input', function (e) {
+    var id = e.target.id, m;
+    if (BRAND_IDS[id]) { brandChanged(); return; }
+    if ((m = /^h([0-2])$/.exec(id))) syncDisbHours(+m[1]);
+    else if ((m = /^d([0-2])$/.exec(id))) dTouched[+m[1]] = (e.target.value.trim() !== '');
+    render();
+  });
+  document.addEventListener('change', function (e) {
+    var id = e.target.id, m;
+    if ((m = /^st([0-2])$/.exec(id))) syncDisbHours(+m[1]);
+    if (!BRAND_IDS[id] && id !== 'wantEmbed') render();
+  });
+  if ($('wantEmbed')) {
+    $('wantEmbed').addEventListener('change', function () {
+      $('embedBox').hidden = !this.checked;
+      if (this.checked) { applyBrand(readCfg()); buildEmbed(); } else clearBrand();
+    });
+    $('resetColors').addEventListener('click', function () {
+      $('cAccent').value = DEFAULTS.accent; $('cHeader').value = DEFAULTS.header; $('cBg').value = DEFAULTS.bg;
+      brandChanged();
+    });
+    $('copyBtn').addEventListener('click', copyCode);
+  }
+  $('reset').addEventListener('click', reset);
+  window.addEventListener('resize', sendHeight);
+  if (window.ResizeObserver) new ResizeObserver(sendHeight).observe(document.body);
+  if (cfg) { applyBrand(cfg); $('adv').open = false; }
+  render();
+})();
+</script>
+
+</body></html>
